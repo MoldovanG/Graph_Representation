@@ -25,6 +25,7 @@ public :
 	void Set_Cursor_First();//seteaza cursorul la inceputul listei
 	T Get_Current(); //returneaza elementul retinut la pozitia curenta a cursorului
 	void Next();//muta cursorul cu o pozitie in fata
+	bool operator == ( Coada <T>&);
 private:
 	struct nod 
 	{

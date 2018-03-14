@@ -113,3 +113,18 @@ void Coada<T>::Next() //muta cursorul pe pozitia urmatoare
 	if (cursor!=NULL)
 	cursor = cursor->urm;
 }
+
+template <class T>
+bool Coada  <T> ::operator==( Coada<T> &x)
+{
+	if (x.size != size) return false; //daca cozile n au acelasi nr de elemente nu sunt egale
+	Set_Cursor_First();
+	int dim = size;
+	for (int j = 1; j <= dim; j++)
+	{
+		T element = Get_Current();
+		Next();
+		if (x.Find(element) != 1) return false;
+	}
+	return true;
+}
