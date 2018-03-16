@@ -79,7 +79,7 @@ return -1;
 }
 
 template<class T>
-int Coada<T> ::GetSize()
+int Coada<T> ::GetSize() const
 {
 	return size;
 }
@@ -127,4 +127,21 @@ bool Coada  <T> ::operator==( Coada<T> &x)
 		if (x.Find(element) != 1) return false;
 	}
 	return true;
+}
+
+template <class T>
+bool Coada<T> :: operator < (const Coada<T>& c) const
+{
+	
+	if (GetSize() < c.GetSize()) return true;
+	if (GetSize() > c.GetSize()) return false;
+	return false;
+}
+
+template<class T>
+bool Coada<T>::operator!=(Coada<T>&c)
+{
+	if ((*this) == c) return false;
+	return true;
+	
 }

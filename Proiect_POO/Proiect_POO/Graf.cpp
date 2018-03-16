@@ -90,6 +90,8 @@ bool Graf::operator <(const Graf c1) const
 
 bool Graf::Test_Conexitate()
 {
+
+
 	int i;
 	int *viz;
 	viz = new int[n+1];
@@ -126,16 +128,16 @@ bool Graf::Test_Conexitate()
 	int ok = 1;
 	for (i = 1; i <= n; i++)
 		if (viz[i] == 0) {
-			ok = 0; cout << "nodul asta n a fost vizitat :" << i << "\n";
+			ok = 0; //cout << "nodul asta n a fost vizitat :" << i << "\n";
+			break;
 		}
 
 	
 	delete  [] viz;
 	delete [] coada;
 
-	
-	if (ok == 0) return false;
-	return true;
+		if (ok == 0) return false;
+		return true;
 	
 
 
@@ -349,3 +351,51 @@ Graf & Graf::operator=(const Graf & x)
 }
 
 
+void Graf::Afisare_Componente_Conexe()
+{
+	int i,w=0;
+	int *viz;
+	viz = new int[n+1];
+	for (i = 1; i <= n; i++)
+		viz[i] = 0;
+	for (i = 1;i<=n;i++)
+		if (viz[i] == 0)
+		{
+			w++;
+			Parcurgere_Eleganta(i, viz, w);
+		}
+		delete[]viz;
+	
+}
+
+void Graf::Parcurgere_Eleganta(int x, int *viz,int w)
+{
+	int *stiva;
+	stiva = new int[n*n];
+	int pr, ul, i;
+	pr = ul = 1;
+
+	stiva[1] = x;
+	cout << "Componenta conexa nr" << w << " este formata din nodurile: ";
+	while (ul != 0)
+	{
+		int element = stiva[ul];
+		ul--;
+		if (viz[element] == 0)
+		{
+			cout << element <<" ";
+			viz[element] = 1;
+			lista_noduri[element].Incepere_Parcurgere();
+			int dim = lista_noduri[element].Numar_Vecini();
+			for (int j = 1; j <= dim; j++)
+			{
+				int element1 = lista_noduri[element].Vecinul_Curent();
+				lista_noduri[element].Urmatorul_Vecin();
+				ul++; stiva[ul] = element1;
+			}
+		}
+	}
+	cout << "\n";
+	delete[]stiva;
+
+}

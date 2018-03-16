@@ -8,7 +8,7 @@ int Node::Verificare_Vecin(int x) //verifica daca x e vecin cu nodul
 	return -1;
 }
 
-int Node::Numar_Vecini()//returneaza numarul de vecini al nodului
+int Node::Numar_Vecini()const //returneaza numarul de vecini al nodului
 {
 	return lista_adiacenta.GetSize();
 }
@@ -47,7 +47,7 @@ Node::~Node()
 
 }
 
-bool Node::operator == ( Node &n1)
+bool Node::operator == (  Node &n1)
 {    
 	int dim = Numar_Vecini();
 	int dim1 = n1.Numar_Vecini();
@@ -70,7 +70,7 @@ bool Node::operator != ( Node & n1)
 	return true;
 }
 
-bool Node ::operator < (Node &n1)
+bool Node ::operator < (const Node &n1) const
 {
 	if (this->Numar_Vecini() < n1.Numar_Vecini()) return true;
 	if (this->Numar_Vecini() > n1.Numar_Vecini()) return false;
@@ -79,7 +79,7 @@ bool Node ::operator < (Node &n1)
 
 }
 
-Node & Node::operator=(const Node & x)
+Node & Node::operator=( Node & x) 
 {
 	Coada <int> aux(x.lista_adiacenta); //aux e construit folosit constructorul de copiere din clasa coada deci e o lista noua
 	lista_adiacenta = aux; //se foloseste "=" implicit care copie bit cu bit, lucru benefic in cazul asta fiindca aux e lista noua deci pointerul obiectului va fi diferit de pointerul nodului din care se copiaza

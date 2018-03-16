@@ -21,11 +21,15 @@ public :
 	void Pop(); //operatie de eliminare a nodului din fata
 	T Front(); //returneaza informatia din primul nod
 	int Find(T);// returneaza 1 daca elementul se gaseste in lista, -1 altfel
-	int GetSize();
+	int GetSize() const;
 	void Set_Cursor_First();//seteaza cursorul la inceputul listei
 	T Get_Current(); //returneaza elementul retinut la pozitia curenta a cursorului
 	void Next();//muta cursorul cu o pozitie in fata
+	
 	bool operator == ( Coada <T>&);
+	bool operator < (const Coada <T>&) const;
+	bool operator != (Coada <T> &);
+
 private:
 	struct nod 
 	{

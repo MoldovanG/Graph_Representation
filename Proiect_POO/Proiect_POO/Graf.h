@@ -57,6 +57,7 @@ public:
 	bool operator != (const Graf ) const;
 	bool operator < (const Graf ) const;
 	bool Test_Conexitate();
+	void Afisare_Componente_Conexe();
 	Graf operator + (const Graf &)const;
 	void Parcurgere_In_Latime();
 	void Parcurgere_In_Adancime();
@@ -67,7 +68,7 @@ public:
 private:
 	int n, m;
 	Node *lista_noduri;
-
+	void Parcurgere_Eleganta(int x, int *, int w);// face o parcurgere si elementele vizitate le marcheaza in vectorul primit ca parametru si afiseaza componetele componentei conexe cu nr de ordine w
 };
 
 

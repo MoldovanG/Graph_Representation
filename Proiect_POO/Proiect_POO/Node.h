@@ -13,7 +13,7 @@ public:
 	~Node();
 	int Verificare_Vecin(int x); //returneaza 1 daca x e vecin cu obiectul, -1 altfel
 	
-	int Numar_Vecini();//returneaza numarul de vecini al nodului 
+	int Numar_Vecini()const ;//returneaza numarul de vecini al nodului 
 	
 	void Incepere_Parcurgere();//seteaza cursorul listei la inceputul listei
 	
@@ -22,10 +22,10 @@ public:
 	void Urmatorul_Vecin();//muta cursorul listei pe urmatorul vecin
 	
 	void Adauga_Vecin(int );
-	bool operator == ( Node &) ;
-	bool operator != ( Node &) ;
-	bool operator < (Node &);
-	Node & operator = (const Node &);
+	bool operator == (Node &) ;
+	bool operator != (Node &) ;
+	bool operator < (const Node &)const;
+	Node & operator = ( Node &) ;
 private:
 
 	Coada <int> lista_adiacenta;

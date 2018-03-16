@@ -1,7 +1,8 @@
-﻿  Proiect_POO.cpp
-  Generating Code...
-  Skipping... (no relevant changes detected)
-  Coada.cpp
+﻿  stdafx.cpp
+  Proiect_POO.cpp
   Node.cpp
   Graf.cpp
+c:\users\george\documents\github\tema_poo\proiect_poo\proiect_poo\graf.cpp(375): warning C4101: 'i': unreferenced local variable
+  Coada.cpp
+  Generating Code...
   Proiect_POO.vcxproj -> C:\Users\George\Documents\GitHub\tema_poo\Proiect_POO\Debug\Proiect_POO.exe
