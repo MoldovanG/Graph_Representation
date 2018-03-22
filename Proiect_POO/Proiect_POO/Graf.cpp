@@ -34,7 +34,7 @@ Graf::~Graf() //destructor eliberez memoria ocupata de lista de noduri
 
 }
 
-bool Graf::operator==(const Graf c1) const
+bool Graf::operator==(const Graf & c1) const
  {
 	if (n != c1.n) return false;
 	if (m != c1.m) return false;
@@ -73,13 +73,13 @@ bool Graf::operator==(const Graf c1) const
 
  }
 
-bool Graf::operator != (const Graf c1) const
+bool Graf::operator != (const Graf &c1) const
 {
 	if ((*this) == c1) return false;
 	return true;
 }
 
-bool Graf::operator <(const Graf c1) const
+bool Graf::operator <(const Graf &c1) const
 {
 	if (n < c1.n) return true;
 	if (n == c1.n &&m < c1.m) return true;
@@ -180,7 +180,6 @@ Graf Graf::operator +(const Graf & g1) const
 			int element = g1.lista_noduri[i].Vecinul_Curent();
 			g1.lista_noduri[i].Urmatorul_Vecin();
 			
-			///****__Cand execut urmatorul if creeaza exceptia de care zicea **__
 			if (rezultat.lista_noduri[i].Verificare_Vecin(element) != 1) 
 			{
 				if (element > i)
@@ -323,6 +322,9 @@ void Graf::Determinare_Matrice_Drumuri()
 	}
 	cout << "\n";
 
+	for (int i = 1; i <= n; i++)
+		delete[]a[i];
+
 	delete[]a;
 }
 
@@ -349,6 +351,48 @@ Graf & Graf::operator=(const Graf & x)
 
 	return *this; //returnez graful curent in caz ca vreau sa fac atribuire multipla
 }
+
+istream & Graf::Add(int index, istream & in)
+{
+	
+
+	Graf auxiliar(*this);//copiez graful curent in altul
+
+	delete[]lista_noduri;//eliverez memoria curenta
+	
+	lista_noduri = new Node[n + 2];//aloc memorie pentru noul nod 
+	for (int i = 1; i <= n; i++) //parcurg fiecare lista din auxiliar si o copiez in vectorul de noduri nou alocat 
+	{
+		auxiliar.lista_noduri[i].Incepere_Parcurgere();
+		int dim = auxiliar.lista_noduri[i].Numar_Vecini();
+		for (int j = 1; j <= dim; j++) 
+		{
+			int element = auxiliar.lista_noduri[i].Vecinul_Curent();
+			auxiliar.lista_noduri[i].Urmatorul_Vecin();
+			lista_noduri[i].Adauga_Vecin(element);
+		}
+		
+	}
+	int nr;
+	cout << "Cate muchii vreti sa adaugati ?";
+		in >> nr;
+	
+	cout << "Dati muchiile \n";
+	for (int i = 1; i <= nr; i++)
+	{
+		int z;
+		in >> z;//indexul asta nu ma intereseaza fiindca oricum il transform in n+1
+		in >> z;
+		lista_noduri[n + 1].Adauga_Vecin(z);
+		lista_noduri[z].Adauga_Vecin(n + 1);
+	}
+	n = n + 1;
+	m += nr;
+
+	return in;
+}
+
+
 
 
 void Graf::Afisare_Componente_Conexe()

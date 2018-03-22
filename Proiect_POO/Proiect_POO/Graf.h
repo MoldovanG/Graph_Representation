@@ -53,9 +53,9 @@ public:
 		}
 		return out;
 	}
-	bool operator == (const Graf ) const;
-	bool operator != (const Graf ) const;
-	bool operator < (const Graf ) const;
+	bool operator == (const Graf &) const;
+	bool operator != (const Graf &) const;
+	bool operator < (const Graf &) const;
 	bool Test_Conexitate();
 	void Afisare_Componente_Conexe();
 	Graf operator + (const Graf &)const;
@@ -63,7 +63,7 @@ public:
 	void Parcurgere_In_Adancime();
 	void Determinare_Matrice_Drumuri();
 	Graf &operator =(const Graf &);
-
+	istream & Add(int index, istream &in);
 	
 private:
 	int n, m;
